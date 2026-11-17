@@ -50,5 +50,21 @@ public class TaskRepository
     public List<TaskItem> GetCompletedTasks()
     {
         return _context.TaskItems.Where(t => t.IsCompleted).ToList();
+ 
+    // Get all tasks that are not completed
+public List<TaskItem> GetUncompletedTasks()
+{
+    return _context.TaskItems
+        .Where(t => !t.IsCompleted)
+        .ToList();
+}
+
+// Get all overdue tasks
+public List<TaskItem> GetOverdueTasks()
+{
+    return _context.TaskItems
+        .Where(t => !t.IsCompleted && t.DueDate < DateTime.Now)
+        .ToList();
+}
     }
 }
