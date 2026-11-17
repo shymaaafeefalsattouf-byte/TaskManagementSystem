@@ -10,4 +10,10 @@ public class User
     public bool IsBlocked { get; set; }
 
     public ICollection<TaskItem> Tasks { get; set; } = new List<TaskItem>();
+public List<User> GetUsersBornAfter2000()
+{
+    return _context.Users
+        .Where(u => u.BirthDate >= new DateTime(2001, 1, 1))
+        .ToList();
+}
 }
